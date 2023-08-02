@@ -28,11 +28,18 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
+-- Move lines
+keymap("n", "<A-j>", ":m .+1<CR>==")
+keymap("n", "<A-k>", ":m .-2<CR>==")
+
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Save
 keymap("n", "<leader>w", "<cmd>w<CR>", opts)
+
+-- Exit
+keymap("n", "<leader>q", "<cmd>q<CR>", opts)
 
 -- Better paste
 keymap("v", "p", "P", opts)
@@ -46,6 +53,10 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Move lines
+keymap("v", "<A-j>", ":m '>+1<CR>gv-gv")
+keymap("v", "<A-k>", ":m '<-2<CR>gv-gv")
+
 -- Plugins --
 
 -- NvimTree
@@ -56,8 +67,8 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader><space>", function ()
-  require("telescope.builtin").buffers {sort_lastused = true}
+keymap("n", "<leader><space>", function()
+  require("telescope.builtin").buffers { sort_lastused = true }
 end)
 
 -- Git

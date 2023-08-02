@@ -1,5 +1,6 @@
 local M = {
-  "Saecki/crates.nvim"
+  "Saecki/crates.nvim",
+  event = { "BufRead Cargo.toml" },
 }
 
 function M.config()

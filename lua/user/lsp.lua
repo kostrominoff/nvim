@@ -1,12 +1,12 @@
 local M = {
   "neovim/nvim-lspconfig",
-  commit = "649137cbc53a044bffde36294ce3160cb18f32c7",
+  -- commit = "649137cbc53a044bffde36294ce3160cb18f32c7",
   lazy = false,
   event = { BufReadPre },
   dependencies = {
     {
       "hrsh7th/cmp-nvim-lsp",
-      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+      -- commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
     },
   },
 }
@@ -51,12 +51,45 @@ function M.config()
 
     server = vim.split(server, "@")[1]
 
+    if server == "rust_analyzer" then
+      require("rust-tools").setup {
+        tools = {
+          on_initialized = function()
+            vim.cmd [[
+            autocmd BufEnter,CursorHold,InsertLeave,BufWritePost *.rs silent! lua vim.lsp.codelens.refresh()
+          ]]
+          end,
+        },
+        server = {
+          standalone = true,
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                autoReload = true,
+              },
+              lens = {
+                enable = true,
+              },
+              checkOnSave = {
+                command = "clippy",
+              },
+            },
+          },
+        },
+      }
+
+      goto continue
+    end
+
     local require_ok, conf_opts = pcall(require, "settings." .. server)
     if require_ok then
       Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
     end
 
     lspconfig[server].setup(Opts)
+    ::continue::
   end
 
   local signs = {

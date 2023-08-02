@@ -1,15 +1,16 @@
 local M = {
   "folke/which-key.nvim",
-  commit = "5224c261825263f46f6771f1b644cae33cd06995",
+  -- commit = "5224c261825263f46f6771f1b644cae33cd06995",
   event = "VeryLazy",
 }
 
 function M.config()
   require("which-key").register({
+    q = "Quit",
     w = "Save",
     f = {
       name = "Find",
-      b =  "Find buffers",
+      b = "Find buffers",
       f = "Find files",
       p = "Find projects",
       t = "Find text",
@@ -21,7 +22,7 @@ function M.config()
       i = "Information",
       I = "Mason",
       r = "Rename",
-      s = "Signature help"
+      s = "Signature help",
     },
     ["<space>"] = "Find buffers",
     ["/"] = "Toggle comment",
@@ -37,14 +38,13 @@ function M.config()
       r = "Repl toggle",
       t = "Terminate",
       u = "Toggle UI",
-      g = {
-        name = "Git",
-        g = "Lazygit"
-      },
     },
-  },
-  {
-    prefix = "<leader>"
+    g = {
+      name = "Git",
+      g = "Lazygit",
+    },
+  }, {
+    prefix = "<leader>",
   })
 end
 
