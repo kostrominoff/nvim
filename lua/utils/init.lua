@@ -11,6 +11,8 @@ M.servers = {
   "yamlls",
   "rust_analyzer",
   "taplo",
+  "tailwindcss",
+  "emmet_language_server"
 }
 
 return M
