@@ -16,6 +16,13 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- Normal --
+-- Splits
+keymap("n", "|", ":vsplit<CR>")
+keymap("n", "\\", ":split<CR>")
+
+-- Select all
+keymap("n", "<C-a>", "gg<S-v>G")
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
