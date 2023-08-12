@@ -12,7 +12,9 @@ M.servers = {
   "rust_analyzer",
   "taplo",
   "tailwindcss",
-  "emmet_language_server"
+  "emmet_language_server",
+  "volar",
+  "vuels"
 }
 
 return M
